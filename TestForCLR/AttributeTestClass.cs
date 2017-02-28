@@ -19,6 +19,7 @@ namespace TestForCLR
             {
                 Console.WriteLine("class has no attribute ,{0}", this.GetType().Name);
             }
+            Console.Write("ceshiyixia");
         }
     }
     [DoActionAdd1Attribute]
