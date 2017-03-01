@@ -31,11 +31,19 @@ namespace TestForCLR
              //List<object> classAttrs= typeof(BaseAttributeTestClassSon1).GetCustomAttributes(false).ToList();
              //MethodInfo methodsInfo = typeof(BaseAttributeTestClassSon2).GetMethod("TestSttribute");
             //测试标记类作用
-            BaseAttributeTestClass attrTest = null;
-            attrTest = new BaseAttributeTestClassSon1();
-            attrTest.DoAction();
-            attrTest = new BaseAttributeTestClassSon2();
-            attrTest.DoAction();
+            //BaseAttributeTestClass attrTest = null;
+            //attrTest = new BaseAttributeTestClassSon1();
+            //attrTest.DoAction();
+            //attrTest = new BaseAttributeTestClassSon2();
+            //attrTest.DoAction();
+
+            //Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+            //excel.Application.Workbooks.Add(true);
+            //string d = excel.Cells[1, 2].value;
+
+            dynamic s =new { a = 1d };
+            string aass = s.a;
+
             Console.Read();
         }
 
