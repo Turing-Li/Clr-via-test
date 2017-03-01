@@ -46,18 +46,24 @@ namespace TestForCLR
             //string aass = s.a;
 
             //一场throw堆栈分析测试
-
-            try
-            {
-                ExceptionThrowTestInStackTrack.ExecptionTest();
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    ExceptionThrowTestInStackTrack.ExecptionTest();
+            //}
+            //catch (Exception)
+            //{
                 
-                throw;
-            }
+            //    throw;
+            //}
 
-            Console.Read();
+            //cpu占用测试
+            //for (; ; )
+            //{
+            //    int i = 1;
+            //}
+
+
+              //  Console.Read();
         }
 
     }
