@@ -48,6 +48,7 @@
     <Compile Include="AttributeTestClass.cs" />
     <Compile Include="DelegateTest.cs" />
     <Compile Include="DelegateTestStaticFunc.cs" />
+    <Compile Include="ExceptionThrowTestInStackTrack.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

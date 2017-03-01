@@ -41,8 +41,21 @@ namespace TestForCLR
             //excel.Application.Workbooks.Add(true);
             //string d = excel.Cells[1, 2].value;
 
-            dynamic s =new { a = 1d };
-            string aass = s.a;
+            //动态解析测试
+            //dynamic s =new { a = 1d };
+            //string aass = s.a;
+
+            //一场throw堆栈分析测试
+
+            try
+            {
+                ExceptionThrowTestInStackTrack.ExecptionTest();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
 
             Console.Read();
         }
