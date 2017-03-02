@@ -63,6 +63,10 @@ namespace TestForCLR
             //}
 
 
+            //GC Test
+            Timer t = new Timer(GcTest.GcTestFunc, null, 0,2000);
+            GC.Collect();
+            Console.ReadLine();
               //  Console.Read();
         }
 
