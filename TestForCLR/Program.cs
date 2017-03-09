@@ -64,8 +64,18 @@ namespace TestForCLR
 
 
             //GC Test
-            Timer t = new Timer(GcTest.GcTestFunc, null, 0,2000);
-            GC.Collect();
+            //Timer t = new Timer(GcTest.GcTestFunc, null, 0,2000);
+            //GC.Collect();
+
+            //反射测试
+            Type t = typeof(TypeTestClass);
+            List<ConstructorInfo> ConstructorInfolists = t.GetTypeInfo().DeclaredConstructors.ToList();
+            PropertyInfo p= t.GetTypeInfo().GetDeclaredProperty("prototy");
+            TypeTestClass tobj=new TypeTestClass();
+            var pdelegate = p.SetMethod.CreateDelegate(typeof(Action<String>),tobj);
+            pdelegate.DynamicInvoke("test type");
+            Console.Write(tobj.prototy);
+
             Console.ReadLine();
               //  Console.Read();
         }
