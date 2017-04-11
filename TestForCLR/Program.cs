@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,8 +30,8 @@ namespace TestForCLR
             //ThreadPool.QueueUserWorkItem(callback, 10);
 
             //test sttribute of class and methods
-             //List<object> classAttrs= typeof(BaseAttributeTestClassSon1).GetCustomAttributes(false).ToList();
-             //MethodInfo methodsInfo = typeof(BaseAttributeTestClassSon2).GetMethod("TestSttribute");
+            //List<object> classAttrs= typeof(BaseAttributeTestClassSon1).GetCustomAttributes(false).ToList();
+            //MethodInfo methodsInfo = typeof(BaseAttributeTestClassSon2).GetMethod("TestSttribute");
             //测试标记类作用
             //BaseAttributeTestClass attrTest = null;
             //attrTest = new BaseAttributeTestClassSon1();
@@ -52,7 +54,7 @@ namespace TestForCLR
             //}
             //catch (Exception)
             //{
-                
+
             //    throw;
             //}
 
@@ -68,16 +70,55 @@ namespace TestForCLR
             //GC.Collect();
 
             //反射测试
-            Type t = typeof(TypeTestClass);
-            List<ConstructorInfo> ConstructorInfolists = t.GetTypeInfo().DeclaredConstructors.ToList();
-            PropertyInfo p= t.GetTypeInfo().GetDeclaredProperty("prototy");
-            TypeTestClass tobj=new TypeTestClass();
-            var pdelegate = p.SetMethod.CreateDelegate(typeof(Action<String>),tobj);
-            pdelegate.DynamicInvoke("test type");
-            Console.Write(tobj.prototy);
+            //Type t = typeof(TypeTestClass);
+            //List<ConstructorInfo> ConstructorInfolists = t.GetTypeInfo().DeclaredConstructors.ToList();
+            //PropertyInfo p= t.GetTypeInfo().GetDeclaredProperty("prototy");
+            //TypeTestClass tobj=new TypeTestClass();
+            //var pdelegate = p.SetMethod.CreateDelegate(typeof(Action<String>),tobj);
+            //pdelegate.DynamicInvoke("test type");
+            //Console.Write(tobj.prototy);
 
+            //序列化测试
+            //SerializableTest test = new SerializableTest();
+            //test.Str = "SerializableTest...";
+            //Stream stream = SerializableHelper.ConvertToMemoryStream(test);
+            //stream.Position = 0;
+            //BinaryFormatter formatter = new BinaryFormatter();
+            //SerializableTest desTest = (SerializableTest)formatter.Deserialize(stream);
+            //Console.WriteLine(desTest.Str);
+
+            //Task
+
+            //Task<String> t = new Task<String>((s) =>
+            //{
+            //    Thread.Sleep(1000);
+            //    object s1 = s.ToString();
+            //    Console.WriteLine("Task Current ThreadId:{0}", Thread.CurrentThread.ManagedThreadId);
+            //    return s1.ToString();
+            //},1000);
+
+            //t.Start();
+
+            //Console.WriteLine("Main ThreadId:{0}", Thread.CurrentThread.ManagedThreadId);
+
+            CancellationTokenSource ctc = new CancellationTokenSource();
+            Task stopTask = new Task(() =>
+            {
+
+                Thread.Sleep(3000);
+                Console.Write("do here now.");
+            }, ctc.Token);
+
+            Task continueTask = stopTask.ContinueWith(task =>
+            {
+                Console.Write("continueTask");
+            });
+
+            stopTask.Start();
+
+            //ctc.Cancel();
             Console.ReadLine();
-              //  Console.Read();
+            //  Console.Read();
         }
 
     }
